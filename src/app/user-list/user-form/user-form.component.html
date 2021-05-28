@@ -1,0 +1,48 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+        Retour
+    </button>
+        <h2 *ngIf="userid>=0">Modifier un utilisateur</h2>
+        <h2 *ngIf="userid==-1">Enregistrer un nouvel utilisateur</h2>
+        <form [formGroup]="userForm" (ngSubmit)="onSaveUser()">
+            <label for="login">Identifiant : </label>
+            <input type="text" id="login" formControlName="login">
+            <br>
+            <label for="password">Mot de passe : </label>
+            <input type="text" id="password" formControlName="password">
+            <br>
+
+            <label for="nom">Nom : </label>
+            <input type="text" id="nom" formControlName="nom">
+            <br>
+
+            <label for="prenom">Prénom : </label>
+            <input type="text" id="prenom" formControlName="prenom">
+            <br>
+
+            <label for="cp">CP : </label>
+            <input type="text" id="cp" formControlName="cp">
+            <br>
+
+            <label for="ville">Ville : </label>
+            <input type="text" id="ville" formControlName="ville">
+            <br>
+
+            <label for="telephone">Téléphone : </label>
+            <input type="text" id="telephone" formControlName="telephone">
+            <br>
+
+            <label for="email">E-mail : </label>
+            <input type="text" id="email" formControlName="email">
+            <br>
+
+            <div *ngFor="let role of roles">
+                <label for="role_{{role.id}}">{{role.denomination.slice(5)}}</label>
+                <input id="role_{{role.id}}" name="role_{{role.id}}" type="checkbox" formControlName="role_{{role.id}}">
+            </div>
+            <button [disabled]="userForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

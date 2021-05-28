@@ -1,0 +1,12 @@
+div:first-child {
+    margin: auto;
+    text-align: center;
+}
+
+div:first-child li {
+    width : 100px;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+}

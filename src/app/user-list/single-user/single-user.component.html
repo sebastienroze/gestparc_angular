@@ -1,0 +1,22 @@
+<div class="fiche">
+    <div *ngIf="user!=null">
+        <h1>Utilisateur : {{user.login}}</h1>
+        <span>Nom :</span>{{user.nom}}<br>
+        <span>Prénom :</span>{{user.prenom}}<br>
+        <span>CP :</span>{{user.cp}}<br>
+        <span>Ville :</span>{{user.ville}}<br>
+        <span>Téléphone :</span>{{user.telephone}}<br>
+        <span>E-mail :</span>{{user.email}}<br>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewUser()">Nouveau
+        </button>
+        <button *ngIf="user!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="user!=null" (click)="onDeleteUser()">
+            Supprimer
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

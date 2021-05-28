@@ -1,0 +1,25 @@
+<nav>
+    <div>
+        <h1>Gestion du parc</h1>
+        <div class="loginDisplay">
+            <div>
+                {{authService.login}}
+            </div>
+            <a *ngIf="authService.isAuth" (click)="onSignOut()" style="cursor: pointer;">
+                Déconnexion
+            </a>
+        </div>    
+    </div>    
+    <div class="menu">
+        <a routerLink="auth/signin" routerLinkActive="active" *ngIf="!authService.isAuth">
+            Connexion
+        </a>
+        <a routerLink="users" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Utilisateurs</a>
+        <a *ngIf="appParams.isUser()">
+            Emprunt
+        </a>
+        <a routerLink="about" routerLinkActive="active">A propos de l'application</a>
+
+    </div>
+</nav>

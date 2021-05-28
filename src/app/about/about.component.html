@@ -1,0 +1,135 @@
+<div>
+    <h1>Gestion du parc</h1>
+<h3>Version {{version}}</h3>
+<h2>Réalisation</h2>
+    <ul>
+        <li>
+            Chenh Tai Mui
+        </li>
+        <li>
+            Luc Delvert
+        </li>
+        <li>
+            Sébastien Rozé
+        </li>
+    </ul>
+</div>
+<div *ngIf="authService.isAuth">
+    <h2>Déscription</h2>
+    <P>
+        Application permettant la gestion de stocks de matériels en location
+        (informatique, commerciaux, événementiel). L’objectifs est de suivre le parc de ces
+        équipements en temps réel et de connaitre l’état de chaque matériel.
+    </P>
+    <ul>
+        <li>
+            Front-end à la disposition des collaborateurs à qui un ou plusieurs équipements ont été
+            prêtés. Le but est de permettre à l’emprunteur de signaler tout événement lié au
+            matériel (dysfonctionnement, panne, demande de retour, prolongation de prêt,
+            demande de prêt,…)
+        </li>
+        <li>
+
+            Front-end à la disposition des gestionnaires pour suivre l’état du parc.
+        </li>
+        <li>
+            Permettre une gestion de planning pour voir la localisation des matériels, leurs
+            réservations (passée et futures)
+        </li>
+        <li>
+            Système d’alerte (retard dans le retour de matériel, nouvelle demande de la part d’un
+            utilisateur.
+        </li>
+    </ul>
+    <P> Permettre un suivi en temps réel des équipements et ceci quelque soit le secteur
+        d’activité
+    </P>
+    <ul>
+        <li>
+            Localisation
+        </li>
+        <li>Etat
+            Planning de réservation
+        </li>
+    </ul>
+    <h2>Fonctions</h2>
+    <ul>
+        <li>
+            Une personne ne peut pas emprunter directement un matériel. Pour emprunter un
+            matériel elle doit en faire la demande sur le portail en précisant
+            <ul>
+                <li>
+                    Le matériel
+                </li>
+                <li> Cadre de l’utilisation (salon professionnel, cours, réunion, location longue …)
+                </li>
+                <li> Date de début de l’emprunt
+                </li>
+                <li> Date prévue de retour
+                </li>
+            </ul>
+        </li>
+        <li> <a routerLink="users">Les comptes utilisateurs sont créé par le gestionnaire</a>
+        </li>
+        <li> Un gestionnaire valide alors la location (prévoir éventuellement la génération d’un
+            bordereau de prêt ex : prêt longue durée)
+        </li>
+        <li> L’application doit pour chaque produit
+            <ul>
+                <li>
+                    Indiquer sa situation actuelle (stock, localisation, emprunteur, état, liste des
+                    documents techniques, mode opératoire d’utilisation)
+                </li>
+                <li> Historique de tous les mouvements
+                </li>
+                <li> En stock (identifier le stock)
+                    <ul>
+                        <li>
+                            Opérationnel
+                        </li>
+                        <li> Hors d’usage
+                        </li>
+                        <li> La cause (avec photos et documents à l’appui)
+                        </li>
+                        <li> Le délai prévu de réparation
+                        </li>
+                    </ul>
+                </li>
+                <li> Hors stock
+                    <ul>
+                        <li> Pris pour un collaborateur, pour quel événement
+                        </li>
+                        <li> Date de retour prévu (date fin événement + 1)
+                        </li>
+                        <li> Joindre les documents techniques (fiches produits, fiches techniques,
+                            notices) dans différents formats (PDF, images, Video)
+                        </li>
+                        <li> Pour ces articles un état des stocks en PDF doit être prévu
+                        </li>
+                    </ul>
+                </li>
+                <li> Prévoir les retours de stocks avec un audit du matériel (ajout de photos, détail
+                    de dysfonctionnement).
+                </li>
+                <li> Système d’alerte automatique
+                    <ul>
+                        <li>
+                            Nouvelle réservation
+                        </li>
+                        <li> Retour de stock
+                        </li>
+                        <li> Matériel défectueux
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li> Possibilité de planifier des réservations pour des usages futures (salon, cours, nouvelles
+            promos)
+        </li>
+        <li>
+            Et toute autre suggestion proposée par l'équipe de développement qui augmentera
+            l'efficacité de l'outil
+        </li>
+    </ul>
+</div>

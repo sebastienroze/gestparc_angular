@@ -1,0 +1,32 @@
+<div class="fiche">
+
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Identifiant</td>
+                <td>Nom</td>
+                <td>Prénom</td>
+                <td>CP</td>
+                <td>Ville</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | filterUserList:searchText" (click)="onViewUser(user.id)"
+                [ngClass]="{'line_selected':(user.id==idUser)}">
+                <td>{{user.login}}</td>
+                <td>{{user.nom}}</td>
+                <td>{{user.prenom}}</td>
+                <td>{{user.cp}}</td>
+                <td>{{user.ville}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-user class="detail"></app-single-user>
+</div>

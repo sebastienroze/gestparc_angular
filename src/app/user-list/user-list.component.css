@@ -1,0 +1,55 @@
+.fiche {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.detail {
+    margin :auto;
+}
+.recherche {
+	padding-top :10px;
+	padding-bottom :10px;
+	display: flex;
+	flex-wrap: wrap;	
+	width : 100%;
+}
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+thead {
+	display: block;
+	background-color: #ff750b80
+}
+
+tbody {
+	max-height: calc(100vh - 200px);
+	overflow-y: auto;
+	display: block;
+	cursor: pointer;
+}
+
+tbody>tr:nth-child(odd) {
+	background: white
+}
+
+tbody>tr:nth-child(even) {
+	background: lightgoldenrodyellow;
+}
+
+td, th {
+	border: 1px solid black;
+	width: 50px;
+	text-align: center;
+	width: 150px;
+	max-width: 150px;
+	overflow-wrap: break-word;
+}
+
+.line_selected {
+	background-color: #aa4e08!important; ;
+	color: white;
+
+}
