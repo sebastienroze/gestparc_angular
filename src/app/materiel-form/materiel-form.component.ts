@@ -5,6 +5,7 @@ import { Materiel } from 'src/app/models/Materiel.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { MaterielsService } from 'src/app/services/materiel.service';
 import { TypeMateriel } from '../models/TypeMateriel.model';
+import { TypeMaterielsService } from '../services/typeMateriel.service';
 
 @Component({
   selector: 'app-materiel-form',
@@ -16,11 +17,16 @@ export class MaterielFormComponent implements OnInit {
   public errorMessage: string;
   public materielid = -1;
   private materiel: Materiel = null;
+  public typeMateriels:TypeMateriel[] = null;
+  private waitTypeMateriels = false;
+
   /***********/
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private materielService: MaterielsService,
+    private typeMaterielService: TypeMaterielsService,
+
     private authService: AuthService,
     private router: Router,
   ) { }
@@ -28,6 +34,12 @@ export class MaterielFormComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
 
+    this.typeMaterielService.getTypeMateriels().then(
+      (typeMateriels:TypeMateriel[]) => {
+      this.setTypeMateriel(typeMateriels);
+      }, (error) => {this.errorMessage = this.authService.getErrorMessage(error);}    
+    );  
+    
     if (id != undefined) {
       this.materielid = id;
       this.materielService.getMaterielById(id).then(
@@ -51,16 +63,27 @@ export class MaterielFormComponent implements OnInit {
       etat: ['', Validators.nullValidator],
       typeMateriel: ['', Validators.nullValidator],
     })
-
   }
 
+  setMateriel(materiel:Materiel) {
+    this.materiel = materiel;
+/*    if (this.typeMateriels != null) {
+      this.setFormControlUser();
+    } else this.waitUser = true;
+*/
+  }
+  setTypeMateriel(typeMateriels:TypeMateriel[]) {
+    this.typeMateriels = typeMateriels;
+   }
+  
   setFormControl() {
     this.materielForm.patchValue({
       nom: this.materiel.nom,
       reference: this.materiel.reference,
       etat: this.materiel.etat,
-      typeMateriel: this.materiel.typeMateriel,
+      typeMateriel: this.materiel.typeMateriel.id,
     });
+    console.log(this.materiel.typeMateriel.id)
   }
 
   onBack() {
@@ -77,9 +100,7 @@ export class MaterielFormComponent implements OnInit {
     const reference = this.materielForm.get('reference').value;
     const etat = this.materielForm.get('etat').value;
     const typeMateriel = this.materielForm.get('typeMateriel').value;
-    const atypeMateriel=  new TypeMateriel(typeMateriel, '');
-    console.log(typeMateriel);
-    console.log(atypeMateriel);
+    const atypeMateriel = new TypeMateriel(typeMateriel, '');
 
     const aMateriel = new Materiel(this.materielid, nom, reference, etat, atypeMateriel);
     /*
