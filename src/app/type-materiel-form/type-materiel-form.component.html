@@ -1,0 +1,16 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="typeMaterielid>=0">Modifier un type de matériel</h2>
+        <h2 *ngIf="typeMaterielid==-1">Enregistrer un nouveau type de matériel</h2>
+        <form [formGroup]="typeMaterielForm" (ngSubmit)="onSaveTypeMateriel()">
+            <label for="description">Déscription : </label>
+            <input type="text" id="description" formControlName="description">
+            <br>
+            <button [disabled]="typeMaterielForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

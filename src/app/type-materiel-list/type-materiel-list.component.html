@@ -1,0 +1,22 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Déscription</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let typeMateriel of typeMateriels | filterTypeMaterielList:searchText"
+                (click)="onViewTypeMateriel(typeMateriel.id)"
+                [ngClass]="{'line_selected':(typeMateriel.id==idTypeMateriel)}">
+                <td>{{typeMateriel.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-type-materiel class="detail"></app-single-type-materiel>
+</div>

@@ -8,14 +8,21 @@
             <a *ngIf="authService.isAuth" (click)="onSignOut()" style="cursor: pointer;">
                 Déconnexion
             </a>
-        </div>    
-    </div>    
+        </div>
+    </div>
     <div class="menu">
         <a routerLink="auth/signin" routerLinkActive="active" *ngIf="!authService.isAuth">
             Connexion
         </a>
         <a routerLink="users" routerLinkActive="active" *ngIf="appParams.isAdmin()">
             Utilisateurs</a>
+        <a routerLink="cadres" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Cadres</a>
+        <a routerLink="typeMateriels" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Type matériels</a>
+        <a routerLink="materiels" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Matériels</a>
+
         <a *ngIf="appParams.isUser()">
             Emprunt
         </a>

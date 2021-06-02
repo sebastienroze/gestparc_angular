@@ -1,0 +1,21 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Déscription</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cadre of cadres | filterCadreList:searchText" (click)="onViewCadre(cadre.id)"
+                [ngClass]="{'line_selected':(cadre.id==idCadre)}">
+                <td>{{cadre.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-cadre class="detail"></app-single-cadre>
+</div>

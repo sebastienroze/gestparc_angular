@@ -1,0 +1,16 @@
+<div class="fiche">
+    <div *ngIf="cadre!=null">
+        <h1>Cadre : {{cadre.description}}</h1>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewCadre()">Nouveau
+        </button>
+        <button *ngIf="cadre!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="cadre!=null" (click)="onDeleteCadre()">
+            Supprimer
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

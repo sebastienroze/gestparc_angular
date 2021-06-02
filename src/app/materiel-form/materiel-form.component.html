@@ -1,0 +1,26 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="materielid>=0">Modifier un matériel</h2>
+        <h2 *ngIf="materielid==-1">Enregistrer un nouveau matériel</h2>
+        <form [formGroup]="materielForm" (ngSubmit)="onSaveMateriel()">
+            <label for="nom">Nom : </label>
+            <input type="text" id="nom" formControlName="nom">
+            <br>
+            <label for="reference">Reference : </label>
+            <input type="text" id="reference" formControlName="reference">
+            <br>
+
+            <label for="etat">Etat : </label>
+            <input type="text" id="etat" formControlName="etat">
+            <br>
+            <label for="typeMateriel">Type :</label>
+            <input type="text" id="typeMateriel" formControlName="typeMateriel">
+            <br>
+            <button [disabled]="materielForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

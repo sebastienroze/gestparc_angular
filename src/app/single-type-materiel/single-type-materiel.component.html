@@ -1,0 +1,16 @@
+<div class="fiche">
+    <div *ngIf="typeMateriel!=null">
+        <h1>Déscription : {{typeMateriel.description}}</h1>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewTypeMateriel()">Nouveau
+        </button>
+        <button *ngIf="typeMateriel!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="typeMateriel!=null" (click)="onDeleteTypeMateriel()">
+            Supprimer
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

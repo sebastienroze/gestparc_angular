@@ -6,8 +6,6 @@ import { User } from '../models/User.model';
 @Injectable({providedIn:'root'})
 
 export class UsersService  {
-    public users: User[] = [];
-
     private apiUsersUrl = 'admin/utilisateurs';  // URL to web api
     private apiUserUrl = 'admin/utilisateur';  // URL to web api
     private apiNewUserUrl = 'admin/utilisateur/new';  // URL to web api

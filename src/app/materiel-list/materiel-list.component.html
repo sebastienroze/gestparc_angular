@@ -1,0 +1,28 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Référence</td>
+                <td>Etat</td>
+                <td>Type</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let materiel of materiels | filterMaterielList:searchText" (click)="onViewMateriel(materiel.id)"
+                [ngClass]="{'line_selected':(materiel.id==idMateriel)}">
+                <td>{{materiel.nom}}</td>
+                <td>{{materiel.reference}}</td>
+                <td>{{materiel.etat}}</td>
+                <td>{{materiel.typeMateriel.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-materiel class="detail"></app-single-materiel>
+</div>

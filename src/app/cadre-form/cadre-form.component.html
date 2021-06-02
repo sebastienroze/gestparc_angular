@@ -1,0 +1,16 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="cadreid>=0">Modifier un cadre</h2>
+        <h2 *ngIf="cadreid==-1">Enregistrer un nouveau cadre</h2>
+        <form [formGroup]="cadreForm" (ngSubmit)="onSaveCadre()">
+            <label for="description">Déscription : </label>
+            <input type="text" id="description" formControlName="description">
+            <br>
+            <button [disabled]="cadreForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

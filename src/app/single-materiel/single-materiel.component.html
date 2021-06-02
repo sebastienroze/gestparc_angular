@@ -1,0 +1,19 @@
+<div class="fiche">
+    <div *ngIf="materiel!=null">
+        <h1>Matériel : {{materiel.nom}}</h1>
+        <span>Référence :</span>{{materiel.reference}}<br>
+        <span>Etat :</span>{{materiel.etat}}<br>
+        <span>Type :</span>{{materiel.typeMateriel.description}}<br>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewMateriel()">Nouveau
+        </button>
+        <button *ngIf="materiel!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="materiel!=null" (click)="onDeleteMateriel()">
+            Supprimer
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

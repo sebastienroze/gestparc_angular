@@ -6,7 +6,7 @@ import { Role } from "../models/Role.model";
 @Injectable({providedIn:'root'})
 export class RolesService  {
     private apiRolesUrl = 'admin/roles';  // URL to web api    
-    private role: Role[] = [];
+//    private role: Role[] = [];
     constructor(
         private http: HttpClient,
         private appParams : AppParams,

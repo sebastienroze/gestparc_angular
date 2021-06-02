@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 export class AppParams {
   mode_debug: boolean = true;
   applicationVersion = 0.001;
-  apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
+//  apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
+  apiUrl: string = 'http://localhost:8080/';
 
   private roles: string[] = [];
   httpOptions = {

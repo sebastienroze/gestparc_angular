@@ -13,16 +13,16 @@ export interface User {
 
 */
 export class User {
-        public nom : string;
-        public prenom : string;
-        public cp : string;
-        public ville : string;
-        public telephone : string;
-        public email : string;
-    constructor(
-        public id: number,
-        public login: string,
-        public password: string,
-        public listeRole: Role[],
-        ) {  }
+        public nom: string;
+        public prenom: string;
+        public cp: string;
+        public ville: string;
+        public telephone: string;
+        public email: string;
+        constructor(
+                public id: number,
+                public login: string,
+                public password: string,
+                public listeRole: Role[],
+        ) { }
 }
