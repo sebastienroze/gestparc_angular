@@ -1,0 +1,22 @@
+<div class="">
+    <div *ngIf="location!=null">
+        <h1>Location : {{location.typeMateriel.description}}</h1>
+        <span>Date début:</span>{{location.date_debut}}<br>
+        <span>Date retour:</span>{{location.date_retour}}<br>
+        <span>Matériel:</span>{{location.materiel.reference}}<br>
+        <span>Valide:</span>
+        <input type="checkbox" [(ngModel)]="location.valide" onclick="return false;">
+        <br>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewLocation()">Nouveau
+        </button>
+        <button *ngIf="location!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="location!=null" (click)="onDeleteLocation()">
+            Supprimer
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

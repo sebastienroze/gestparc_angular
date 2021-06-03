@@ -22,11 +22,9 @@
             Type matériels</a>
         <a routerLink="materiels" routerLinkActive="active" *ngIf="appParams.isAdmin()">
             Matériels</a>
-
-        <a *ngIf="appParams.isUser()">
-            Emprunt
+        <a routerLink="locations" routerLinkActive="active" *ngIf="appParams.isUser()">
+            Emprunts
         </a>
         <a routerLink="about" routerLinkActive="active">A propos de l'application</a>
-
     </div>
 </nav>

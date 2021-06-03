@@ -20,6 +20,7 @@ import { CadreListComponent } from './cadre-list/cadre-list.component';
 import { SingleCadreComponent } from './single-cadre/single-cadre.component';
 import { CadreFormComponent } from './cadre-form/cadre-form.component';
 import { FilterCadreListPipe } from './cadre-list.filter';
+
 import { FilterMaterielListPipe } from './materiel-list.filter';
 import { FilterTypeMaterielListPipe } from './typeMateriel-list.filter';
 import { TypeMaterielListComponent } from './type-materiel-list/type-materiel-list.component';
@@ -28,6 +29,10 @@ import { TypeMaterielFormComponent } from './type-materiel-form/type-materiel-fo
 import { MaterielFormComponent } from './materiel-form/materiel-form.component';
 import { SingleTypeMaterielComponent } from './single-type-materiel/single-type-materiel.component';
 import { SingleMaterielComponent } from './single-materiel/single-materiel.component';
+import { SingleLocationComponent } from './single-location/single-location.component';
+import { LocationFormComponent } from './location-form/location-form.component';
+import { LocationListComponent } from './location-list/location-list.component';
+import { FilterLocationListPipe } from './location-list.filter';
 
 const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent },
@@ -53,6 +58,11 @@ const appRoutes: Routes = [
   { path: 'materiels/new', canActivate: [AuthGuardService], component: MaterielFormComponent },
   { path: 'materiels/view/:id', canActivate: [AuthGuardService], component: MaterielListComponent },
   { path: 'materiels/edit/:id', canActivate: [AuthGuardService], component: MaterielFormComponent },
+  // *********Locations*********
+  { path: 'locations', canActivate: [AuthGuardService], component: LocationListComponent },
+  { path: 'locations/new', canActivate: [AuthGuardService], component: LocationFormComponent },
+  { path: 'locations/view/:id', canActivate: [AuthGuardService], component: LocationListComponent },
+  { path: 'locations/edit/:id', canActivate: [AuthGuardService], component: LocationFormComponent },
   // ******************
 
   { path: '', redirectTo: 'users', pathMatch: 'full' },
@@ -85,6 +95,11 @@ const appRoutes: Routes = [
     MaterielFormComponent,
     FilterMaterielListPipe,
     SingleMaterielComponent,
+
+    SingleLocationComponent,
+    FilterLocationListPipe,
+    LocationFormComponent,
+    LocationListComponent,
   ],
   imports: [
     BrowserModule,

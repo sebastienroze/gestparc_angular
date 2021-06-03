@@ -1,0 +1,40 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="locationid>=0">Modifier un emprun</h2>
+        <h2 *ngIf="locationid==-1">Enregistrer un nouveau location</h2>
+        <form [formGroup]="locationForm" (ngSubmit)="onSaveLocation()">
+
+            <label for="typeMateriel">Type de matériel: </label>
+            <select name="typeMateriel" formControlName="typeMateriel">
+                <option *ngFor="let typeMateriel of typeMateriels" value="{{typeMateriel.id}}">
+                    {{typeMateriel.description}}
+                </option>
+            </select>
+            <br>
+
+            <label for="date_debut">Date de début : </label>
+            <input type="date" id="date_debut" formControlName="date_debut">
+            <br>
+            <label for="date_retour">Date de retour : </label>
+            <input type="date" id="date_retour" formControlName="date_retour">
+            <br>
+
+            <label for="Materiel">Matériel : </label>
+            <select name="materiel" formControlName="materiel">
+                <option *ngFor="let materiel of materiels" value="{{materiel.id}}">
+                    {{materiel.reference}}
+                </option>
+            </select>
+            <br>  
+            <label for="valide">Valide : </label>
+            <input type="checkbox" id="valide" formControlName="valide">
+            <br>
+
+            <button [disabled]="locationForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>
