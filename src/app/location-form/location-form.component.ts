@@ -16,6 +16,7 @@ import { TypeMaterielsService } from '../services/typeMateriel.service';
 })
 export class LocationFormComponent implements OnInit {
   public locationForm: FormGroup;
+  public locationAdminForm: FormGroup;
   public errorMessage: string;
   public locationid = -1;
   private location: Location = null;
@@ -62,43 +63,48 @@ export class LocationFormComponent implements OnInit {
         }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
       );
     } else {
-      this.location = new Location(null,false,null,null,null,null,null)
+      this.location = new Location(null, false, null, null, null, null, null)
       this.setFormControl();
     }
   }
 
   initForm() {
     this.locationForm = this.formBuilder.group({
-      valide: ['valide', Validators.nullValidator],
       date_debut: ['date_debut', Validators.nullValidator],
       date_retour: ['date_retour', Validators.nullValidator],
       typeMateriel: ['typeMateriel', Validators.nullValidator],
-      materiel: ['materiel', Validators.nullValidator],
     })
 
+    this.locationAdminForm = this.formBuilder.group({
+      valide: ['valide', Validators.nullValidator],
+      materiel: ['materiel', Validators.nullValidator],
+    })   
   }
 
-getMaterielID(): number {
+  getMaterielID(): number {
     if (this.location.materiel == null) return null
-    return this.location.materiel.id                
-}
-getTypeMaterielID(): number {
+    return this.location.materiel.id
+  }
+  getTypeMaterielID(): number {
     if (this.location.typeMateriel == null) return null
-    return this.location.typeMateriel.id                
-}
-getUtilisateurID(): number {
+    return this.location.typeMateriel.id
+  }
+  getUtilisateurID(): number {
     if (this.location.utilisateur == null) return null
-    return this.location.utilisateur.id                
-}
+    return this.location.utilisateur.id
+  }
 
   setFormControl() {
     this.locationForm.patchValue({
-      valide: this.location.valide,
       date_debut: this.location.date_debut,
       date_retour: this.location.date_retour,
       typeMateriel: this.getTypeMaterielID(),
-      materiel: this.getMaterielID(),
     });
+
+    this.locationAdminForm.patchValue({
+      valide: this.location.valide,
+      materiel: this.getMaterielID(),
+    });    
   }
 
   onBack() {
@@ -111,13 +117,12 @@ getUtilisateurID(): number {
   }
 
   onSaveLocation() {
-    const valide = this.locationForm.get('valide').value;
+    const valide = this.locationAdminForm.get('valide').value;
     const date_debut = this.locationForm.get('date_debut').value;
     const date_retour = this.locationForm.get('date_retour').value;
-    const materiel = new Materiel(this.locationForm.get('materiel').value, null, null, null, null);
     const typeMateriel = new TypeMateriel(this.locationForm.get('typeMateriel').value, null);
-    const utilisateur = null
-
+    const utilisateur = null;
+    const materiel = null;
     const aLocation = new Location(this.locationid, valide, date_debut, date_retour, typeMateriel, materiel, utilisateur);
     if (this.locationid == -1) { // Création 
       this.locationService.createNewLocation(aLocation).then(
@@ -134,7 +139,7 @@ getUtilisateurID(): number {
       this.locationService.UpdateLocation(aLocation).then(
         (location: Location) => {
           if (location === null) {
-            console.log("Erreur modification du location");
+            console.log("Erreur modification de la location");
           } else {
             this.router.navigate(['/locations', 'view', location]);
           }
@@ -142,4 +147,31 @@ getUtilisateurID(): number {
       );
     }
   }
+
+  onAdminSaveLocation() {
+    const valide = this.locationAdminForm.get('valide').value;
+    const date_debut = this.locationForm.get('date_debut').value;
+    const date_retour = this.locationForm.get('date_retour').value;
+    const typeMateriel = new TypeMateriel(this.locationForm.get('typeMateriel').value, null);
+    const utilisateur = null
+    const materielid = this.locationAdminForm.get('materiel').value;
+    var materiel = null
+    console.log(materielid)
+    if (materielid != null) {
+      materiel = new Materiel(materielid, null, null, null, null);
+    }
+    const aLocation = new Location(this.locationid, valide, date_debut, date_retour, typeMateriel, materiel, utilisateur);
+    if (this.locationid != -1) { // mise à jour
+      this.locationService.UpdateAdminLocation(aLocation).then(
+        (location: Location) => {
+          if (location === null) {
+            console.log("Erreur modification de la location");
+          } else {
+            this.router.navigate(['/locations', 'view', location]);
+          }
+        }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
+      );
+    }
+  }
+
 }

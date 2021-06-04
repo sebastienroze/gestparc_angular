@@ -44,6 +44,10 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
+  getReference() {
+    if ((this.location != null && this.location.materiel != null)) return this.location.materiel.reference;    
+    return null;
+  }
   onBack() {
     this.router.navigate(['/locations']);
   }
@@ -55,8 +59,9 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
   onDeleteLocation() {
     this.locationService.removeLocation(this.location).then(
       (any: any) => {
+        this.errorMessage = ""
         if (any === null) {
-          console.log("Erreur à la suppression de lalocation" + this.location.id);
+          console.log("Erreur à la suppression de la location" + this.location.id);
         } else {
           this.router.navigate(['/locations']);
         }

@@ -1,9 +1,10 @@
 <div class="">
     <div *ngIf="location!=null">
         <h1>Location : {{location.typeMateriel.description}}</h1>
+        <span>Emprunteur:</span>{{location.utilisateur.login}}<br>
         <span>Date début:</span>{{location.date_debut}}<br>
         <span>Date retour:</span>{{location.date_retour}}<br>
-        <span>Matériel:</span>{{location.materiel.reference}}<br>
+        <span>Matériel:</span>{{getReference()}}<br>
         <span>Valide:</span>
         <input type="checkbox" [(ngModel)]="location.valide" onclick="return false;">
         <br>

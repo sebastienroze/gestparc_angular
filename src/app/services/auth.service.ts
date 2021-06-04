@@ -41,6 +41,7 @@ export class AuthService {
     }
 
     public getErrorMessage(error:any) : string {
+        console.log(error)
         if (error.status==0) {
             return "Pas de connexion au serveur !";
           } else if (error.status==403) {

@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
         this.appParams.setAuthServiceResponse(authServiceResponse);
         this.authService.isAuth = true;
         this.authService.login = login;
-        this.router.navigate(["/users"]);
+        this.router.navigate(["/locations"]);
       }, (error) => {
         if (error.status==0) {
           this.errorMessage = "Pas de connexion au serveur !";

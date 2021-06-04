@@ -65,8 +65,8 @@ const appRoutes: Routes = [
   { path: 'locations/edit/:id', canActivate: [AuthGuardService], component: LocationFormComponent },
   // ******************
 
-  { path: '', redirectTo: 'users', pathMatch: 'full' },
-  { path: '**', redirectTo: 'users' }
+  { path: '', redirectTo: 'locations', pathMatch: 'full' },
+  { path: '**', redirectTo: 'locations' }
 ]
 
 @NgModule({

@@ -1,7 +1,7 @@
 <div>
     <h1>Gestion du parc</h1>
-<h3>Version {{version}}</h3>
-<h2>Réalisation</h2>
+    <h3>Version {{version}}</h3>
+    <h2>Réalisation</h2>
     <ul>
         <li>
             Chenh Tai Mui
@@ -55,8 +55,10 @@
     <h2>Fonctions</h2>
     <ul>
         <li>
-            Une personne ne peut pas emprunter directement un matériel. Pour emprunter un
-            matériel elle doit en faire la demande sur le portail en précisant
+            <a routerLink="/locations/new">
+                Une personne ne peut pas emprunter directement un matériel. Pour emprunter un
+                matériel elle doit en faire la demande sur le portail en précisant
+            </a>
             <ul>
                 <li>
                     Le matériel
@@ -69,10 +71,12 @@
                 </li>
             </ul>
         </li>
-        <li> <a routerLink="users">Les comptes utilisateurs sont créé par le gestionnaire</a>
+        <li> <a routerLink="/users">Les comptes utilisateurs sont créé par le gestionnaire</a>
         </li>
-        <li> Un gestionnaire valide alors la location (prévoir éventuellement la génération d’un
-            bordereau de prêt ex : prêt longue durée)
+        <li><a routerLink="/locations">
+                Un gestionnaire valide alors la location (prévoir éventuellement la génération d’un
+                bordereau de prêt ex : prêt longue durée)
+            </a>
         </li>
         <li> L’application doit pour chaque produit
             <ul>
