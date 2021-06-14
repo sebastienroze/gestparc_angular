@@ -9,6 +9,12 @@ export class FilterMaterielListPipe implements PipeTransform {
         if (!searchText) return items;
         searchText = searchText.toLowerCase();
         return items.filter(it => {
+           console.log(Object.values(it).toString().toLowerCase());
+            if (it.typeMateriel != null) {
+                if (it.typeMateriel.description.toLowerCase().includes(searchText)) {
+                    return true;
+                }
+            }
             return Object.values(it).toString().toLowerCase().includes(searchText);
         });
     }

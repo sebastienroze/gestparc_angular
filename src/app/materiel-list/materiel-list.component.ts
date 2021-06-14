@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppParams } from '../app.params';
 import { Materiel } from '../models/Materiel.model';
 import { AuthService } from '../services/auth.service';
 import { MaterielsService } from '../services/materiel.service';
@@ -16,12 +17,15 @@ export class MaterielListComponent implements OnInit, OnDestroy {
   public idMateriel = null;
   private routeSubscription: Subscription;
   public searchText: any;
+
   /***********/
   constructor(
     private materielsService: MaterielsService,
     private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute,
+    private appParams : AppParams,
+
   ) { }
   /***********/
 
@@ -49,5 +53,11 @@ export class MaterielListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/materiels', 'view', id]);
   }
 
+  onEtatStock() {    
+    this.appParams.visionneurFile = this.appParams.apiUrl 
+    +  "docs/materiel/etatStock";
+    this.appParams.visionneurBack = ['/materiels']
+    this.router.navigate(['/visionneur']);
+  }
 
 }

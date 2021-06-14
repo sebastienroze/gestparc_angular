@@ -19,10 +19,10 @@ button{
 button:hover {
 	text-shadow: lightgray 1px 1px 5px;
 	background-color:#ff750b;
-
 }
-
-
+button:disabled {
+	background-color:grey;
+}
 .fiche {
 	display: flex;
 	flex-wrap: wrap;

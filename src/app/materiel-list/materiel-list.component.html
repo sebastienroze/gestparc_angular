@@ -2,7 +2,11 @@
     <div class="recherche">
         Recherche
         <input [(ngModel)]="searchText">
+        <button (click)="onEtatStock()">
+            Etat du stock
+        </button>
     </div>
+
     <table>
         <thead>
             <tr>
@@ -24,5 +28,6 @@
         </tbody>
     </table>
     <p>{{errorMessage}}</p>
+
     <app-single-materiel class="detail"></app-single-materiel>
 </div>

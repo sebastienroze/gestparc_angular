@@ -1,0 +1,31 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Type</td>
+                <td>Nom</td>
+                <td>Référence</td>
+                <td>Pris le</td>
+                <td>Retour le</td>
+                <td>Locataire</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let retour of retours | filterRetourList:searchText" (click)="onViewRetour(retour.id)"
+                [ngClass]="{'line_selected':(retour.id==idRetour)}">
+                <td>{{getDescriptionTypeMateriel(retour)}}</td>
+                <td>{{getNomMateriel(retour)}}</td>
+                <td>{{getReference(retour)}}</td>
+                <td>{{getDateDebut(retour)}}</td>
+                <td>{{getDateRetour(retour)}}</td>
+                <td>{{getLocataire(retour)}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-retour class="detail"></app-single-retour>
+</div>

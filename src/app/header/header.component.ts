@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuth = this.authService.isAuth;
-    console.log(this.router.url);
   }
   
   onSignOut() {

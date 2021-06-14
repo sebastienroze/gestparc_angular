@@ -33,6 +33,21 @@ import { SingleLocationComponent } from './single-location/single-location.compo
 import { LocationFormComponent } from './location-form/location-form.component';
 import { LocationListComponent } from './location-list/location-list.component';
 import { FilterLocationListPipe } from './location-list.filter';
+import { SingleRetourComponent } from './single-retour/single-retour.component';
+import { RetourListComponent } from './retour-list/retour-list.component';
+import { RetourFormComponent } from './retour-form/retour-form.component';
+import { FilterRetourListPipe } from './retour-list.filter';
+import { VisionneurComponent } from './visionneur/visionneur.component';
+import { SafePipe } from './safe.pipe';
+import { HistoriqueListComponent } from './historique-list/historique-list.component';
+import { FilterHistoriqueListPipe } from './historique-list.filter';
+import { ReparationListComponent } from './reparation-list/reparation-list.component';
+import { ReparationFormComponent } from './reparation-form/reparation-form.component';
+import { SingleReparationComponent } from './single-reparation/single-reparation.component';
+import { FilterReparationListPipe } from './reparation-list.filter';
+import { AlerteListComponent } from './alerte-list/alerte-list.component';
+import { SingleAlerteComponent } from './single-alerte/single-alerte.component';
+import { FilterAlerteListPipe } from './alerte-list.filter';
 
 const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent },
@@ -58,12 +73,28 @@ const appRoutes: Routes = [
   { path: 'materiels/new', canActivate: [AuthGuardService], component: MaterielFormComponent },
   { path: 'materiels/view/:id', canActivate: [AuthGuardService], component: MaterielListComponent },
   { path: 'materiels/edit/:id', canActivate: [AuthGuardService], component: MaterielFormComponent },
+  { path: 'materiels/historiques/:id', canActivate: [AuthGuardService], component: HistoriqueListComponent },
   // *********Locations*********
   { path: 'locations', canActivate: [AuthGuardService], component: LocationListComponent },
   { path: 'locations/new', canActivate: [AuthGuardService], component: LocationFormComponent },
   { path: 'locations/view/:id', canActivate: [AuthGuardService], component: LocationListComponent },
   { path: 'locations/edit/:id', canActivate: [AuthGuardService], component: LocationFormComponent },
+  // *********Retour*********
+  { path: 'retours', canActivate: [AuthGuardService], component: RetourListComponent },
+  { path: 'retours/new', canActivate: [AuthGuardService], component: RetourFormComponent },
+  { path: 'retours/view/:id', canActivate: [AuthGuardService], component: RetourListComponent },
+  { path: 'retours/edit/:id', canActivate: [AuthGuardService], component: RetourFormComponent },
+  // *********Reparation*********
+  { path: 'reparations', canActivate: [AuthGuardService], component: ReparationListComponent },
+  { path: 'reparations/new', canActivate: [AuthGuardService], component: ReparationFormComponent },
+  { path: 'reparations/view/:id', canActivate: [AuthGuardService], component: ReparationListComponent },
+  { path: 'reparations/edit/:id', canActivate: [AuthGuardService], component: ReparationFormComponent },
+  // *********Alertes*********
+  { path: 'alertes', canActivate: [AuthGuardService], component: AlerteListComponent},
+  { path: 'alertes/view/:id', canActivate: [AuthGuardService], component: AlerteListComponent },  
   // ******************
+  
+  { path: 'visionneur', canActivate: [AuthGuardService], component: VisionneurComponent },
 
   { path: '', redirectTo: 'locations', pathMatch: 'full' },
   { path: '**', redirectTo: 'locations' }
@@ -100,6 +131,26 @@ const appRoutes: Routes = [
     FilterLocationListPipe,
     LocationFormComponent,
     LocationListComponent,
+
+    SingleRetourComponent,
+    FilterRetourListPipe,
+    RetourListComponent,
+    RetourFormComponent,
+
+    VisionneurComponent,
+    SafePipe,
+
+    FilterHistoriqueListPipe,
+    HistoriqueListComponent,
+
+    ReparationListComponent,
+    ReparationFormComponent,
+    SingleReparationComponent,
+    FilterReparationListPipe,
+
+    AlerteListComponent,
+    SingleAlerteComponent,
+    FilterAlerteListPipe,
   ],
   imports: [
     BrowserModule,

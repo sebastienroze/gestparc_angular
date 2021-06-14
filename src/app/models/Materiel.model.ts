@@ -5,7 +5,8 @@ export class Materiel {
                 public id: number,
                 public nom: string,
                 public reference: string,
-                public etat: number,
+                public etat: string,
                 public typeMateriel: TypeMateriel,
         ) { }
+
 }

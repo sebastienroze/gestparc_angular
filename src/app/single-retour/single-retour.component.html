@@ -1,0 +1,21 @@
+<div class="">
+    <div *ngIf="retour!=null">
+        <h1>Retour : {{retour.audit}}</h1>
+        <h2>Matériel</h2>
+        <span>type :</span>{{getDescriptionTypeMateriel()}}<br>
+        <span>Nom :</span>{{getNomMateriel()}}<br>
+        <span>Référence :</span>{{getReference()}}<br>
+        <h2>Location du {{getDateDebut()}} au {{getDateRetour()}}</h2>
+        <h2>Locataire : {{getLocataire()}}</h2>
+
+        <h2>Etat</h2>
+        <span>Audit :</span>{{retour.audit}}<br>
+        <span>Etat entrant :</span>{{retour.etatEntrant}}<br>
+        <span>Etat sortant :</span>{{retour.etatSortant}}<br>
+    </div>
+    <div class="boutons">
+        <button (click)="onNewRetour()">Nouveau
+        </button>        
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

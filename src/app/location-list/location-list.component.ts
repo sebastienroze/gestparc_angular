@@ -21,26 +21,38 @@ export class LocationListComponent implements OnInit, OnDestroy {
     private locationsService: LocationsService,
     private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute,    
   ) { }
   /***********/
 
+
   ngOnInit(): void {
+ 
     this.locationsService.getLocations().then(
       (locations: Location[]) => {
         if (locations === null) {
           console.log("Erreur à la lecture des locations");
         } else {
           this.locations = locations;
+          this.errorMessage = ""; 
         }
       }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
     );
+
     this.routeSubscription = this.route.params.subscribe(routeParams => {
       this.idLocation = routeParams.id;
     });
-
   }
 
+  public getEtatLocation(location: Location): string {
+    if (location != null) return this.locationsService.getEtatLocation()[location.etat];
+    return null;
+  }
+
+  public getReference(location: Location): string {
+    if (location.materiel != null) return location.materiel.reference;
+    return null;
+  }
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
   }

@@ -14,6 +14,8 @@
         <a routerLink="auth/signin" routerLinkActive="active" *ngIf="!authService.isAuth">
             Connexion
         </a>
+        <a routerLink="alertes" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Alertes</a>
         <a routerLink="users" routerLinkActive="active" *ngIf="appParams.isAdmin()">
             Utilisateurs</a>
         <a routerLink="cadres" routerLinkActive="active" *ngIf="appParams.isAdmin()">
@@ -25,6 +27,11 @@
         <a routerLink="locations" routerLinkActive="active" *ngIf="appParams.isUser()">
             Emprunts
         </a>
+        <a routerLink="retours" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+            Retours</a>
+            <a routerLink="reparations" routerLinkActive="active" *ngIf="appParams.isAdmin()">
+                Réparations</a>
+    
         <a routerLink="about" routerLinkActive="active">A propos de l'application</a>
     </div>
 </nav>

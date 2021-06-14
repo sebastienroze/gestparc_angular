@@ -1,0 +1,9 @@
+object {
+    width: 100%;
+    height: calc(100vh - 200px);
+}
+
+button {
+    float: right;
+    height: 50px;
+}

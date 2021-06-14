@@ -1,23 +1,27 @@
 <div class="">
     <div *ngIf="location!=null">
         <h1>Location : {{location.typeMateriel.description}}</h1>
+        <span>Cadre:</span>{{getCadreDescription()}}<br>
         <span>Emprunteur:</span>{{location.utilisateur.login}}<br>
         <span>Date début:</span>{{location.date_debut}}<br>
         <span>Date retour:</span>{{location.date_retour}}<br>
         <span>Matériel:</span>{{getReference()}}<br>
-        <span>Valide:</span>
-        <input type="checkbox" [(ngModel)]="location.valide" onclick="return false;">
+        <span>Etat:</span> {{getEtatLocation()}}<br>
         <br>
     </div>
     <div class="boutons">
         <button (click)="onNewLocation()">Nouveau
         </button>
-        <button *ngIf="location!=null" (click)="onModify()">
+        <button *ngIf="canModify()" (click)="onModify()">
             Modifier
         </button>
-        <button *ngIf="location!=null" (click)="onDeleteLocation()">
+        <button *ngIf="canDelete()" (click)="onDeleteLocation()">
             Supprimer
         </button>
+        <button *ngIf="canBordereau()" (click)="onBordereau()">
+            Bordereau
+        </button>
+
     </div>
     <p>{{errorMessage}}</p>
 </div>

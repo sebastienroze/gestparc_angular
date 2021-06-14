@@ -6,13 +6,13 @@ export class AppParams {
   /*
     mode_debug: boolean = true;
     apiUrl: string = 'http://localhost:8080/';
-    */
-  apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
-  mode_debug: boolean = false;
-  /*
   */
+    apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
+  mode_debug: boolean = false;
   applicationVersion = 0.2;
 
+  public visionneurFile : string;
+  public visionneurBack : string[];
   private roles: string[] = [];
   httpOptions = {
     headers: new HttpHeaders({

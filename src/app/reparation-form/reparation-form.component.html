@@ -1,0 +1,48 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <form *ngIf="reparationid==-1" [formGroup]="reparationForm" (ngSubmit)="onSaveReparation()">
+            <h2 >Enregistrer une nouvelle reparation</h2>
+            <label for="materiel">Matériel : </label>
+            <select name="materiel" formControlName="materiel">
+                <option *ngFor="let materiel of materiels" value="{{materiel.id}}">
+                    {{materiel.reference}}
+                </option>
+            </select>
+            <br>            
+            <label for="date_retour">Date de retour prévu : </label>
+            <input type="date" id="date_retour" formControlName="date_retour">
+            <br>
+            <label for="etatCasse">Description de la panne : </label>
+            <input type="text" id="etatCasse" formControlName="etatCasse">
+            <br>
+            <button [disabled]="reparationForm.invalid" type="submit">Enregistrer</button>
+        </form>
+
+        <form *ngIf="reparationid>=0&&reparation.etat==0" [formGroup]="reparationUpdateForm" (ngSubmit)="onUpdateReparation()">
+            <h2>Modifier une reparation</h2>
+            <label for="materiel">Matériel : </label>
+            {{reparation.materiel.reference}}            
+            <br>            
+            <label for="date_retour">Date de retour prévu : </label>
+            <input type="date" id="date_retour" formControlName="date_retour">
+            <br>
+            <button [disabled]="reparationUpdateForm.invalid" type="submit">Changer la date</button>
+        </form>        
+        <form *ngIf="reparationid>=0&&reparation.etat==0" [formGroup]="reparationRepareForm" (ngSubmit)="onRepareReparation()">
+            <label for="etatCasse">Description de la panne : </label>
+            {{reparation.etatCasse}}            
+            <br>
+            <label for="etatRepare">Etat après réparation : </label>
+            <input type="text" id="etatRepare" formControlName="etatRepare">
+            <button [disabled]="reparationRepareForm.invalid" type="submit">Enregistrer la réparation</button>
+            <br>
+        </form>        
+
+
+
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

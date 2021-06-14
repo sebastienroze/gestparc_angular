@@ -1,0 +1,21 @@
+.fiche>div {
+    line-height: 200%;
+    width: 300px;
+}
+
+span {
+    width : 150px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.boutons {
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;	
+}
+
+button {
+    width : 100px;
+    height: 50px;
+}

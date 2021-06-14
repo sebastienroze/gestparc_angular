@@ -17,8 +17,7 @@ export class MaterielFormComponent implements OnInit {
   public errorMessage: string;
   public materielid = -1;
   private materiel: Materiel = null;
-  public typeMateriels:TypeMateriel[] = null;
-  private waitTypeMateriels = false;
+  public typeMateriels: TypeMateriel[] = null;
 
   /***********/
   constructor(
@@ -35,11 +34,11 @@ export class MaterielFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
 
     this.typeMaterielService.getTypeMateriels().then(
-      (typeMateriels:TypeMateriel[]) => {
-      this.setTypeMateriel(typeMateriels);
-      }, (error) => {this.errorMessage = this.authService.getErrorMessage(error);}    
-    );  
-    
+      (typeMateriels: TypeMateriel[]) => {
+        this.setTypeMateriel(typeMateriels);
+      }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
+    );
+
     if (id != undefined) {
       this.materielid = id;
       this.materielService.getMaterielById(id).then(
@@ -60,22 +59,22 @@ export class MaterielFormComponent implements OnInit {
     this.materielForm = this.formBuilder.group({
       nom: ['', Validators.required],
       reference: ['', Validators.required],
-      etat: ['', Validators.nullValidator],
-      typeMateriel: ['', Validators.nullValidator],
+      etat: ['', Validators.required],
+      typeMateriel: ['', Validators.required],
     })
   }
 
-  setMateriel(materiel:Materiel) {
+  setMateriel(materiel: Materiel) {
     this.materiel = materiel;
-/*    if (this.typeMateriels != null) {
-      this.setFormControlUser();
-    } else this.waitUser = true;
-*/
+    /*    if (this.typeMateriels != null) {
+          this.setFormControlUser();
+        } else this.waitUser = true;
+    */
   }
-  setTypeMateriel(typeMateriels:TypeMateriel[]) {
+  setTypeMateriel(typeMateriels: TypeMateriel[]) {
     this.typeMateriels = typeMateriels;
-   }
-  
+  }
+
   setFormControl() {
     this.materielForm.patchValue({
       nom: this.materiel.nom,

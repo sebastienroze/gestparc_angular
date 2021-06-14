@@ -35,7 +35,7 @@ export class CadreFormComponent implements OnInit {
             console.log("Erreur à la lecture du cadre");
           } else {
             this.cadre = cadre;
-            this.setFormControl();            
+            this.setFormControl();
           }
         }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
       );
@@ -45,14 +45,14 @@ export class CadreFormComponent implements OnInit {
 
   initForm() {
     this.cadreForm = this.formBuilder.group({
-      description: ['description', Validators.required],
+      description: ['', Validators.required],
     })
 
   }
 
   setFormControl() {
     this.cadreForm.patchValue({
-      description:this.cadre.description,
+      description: this.cadre.description,
     });
   }
 

@@ -1,0 +1,32 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Texte</td>
+                <td>Location</td>
+                <td>Reparation</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let alerte of alertes | filterAlerteList:searchText; index as i"
+                (click)="onViewAlerte(i)" [ngClass]="{'line_selected':(i==idAlerte)}">
+                <td>{{alerte.texte}}</td>
+                <td><a *ngIf="alerte.location!=null" routerLink="/locations/view/{{alerte.location.id}}">
+                        {{alerte.location.utilisateur.login}}
+                    </a>
+                </td>
+                <td><a *ngIf="alerte.reparation!=null" routerLink="/reparations/view/{{alerte.reparation.id}}">
+                        {{alerte.reparation.date_retour}}
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-alerte class="detail"></app-single-alerte>
+</div>

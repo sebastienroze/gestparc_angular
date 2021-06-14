@@ -7,20 +7,20 @@
         <thead>
             <tr>
                 <td>Déscription</td>
+                <td>Référence</td>
                 <td>Date début</td>
                 <td>Date retour</td>
-                <td>Valide</td>
+                <td>Etat</td>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let location of locations | filterLocationList:searchText" (click)="onViewLocation(location.id)"
                 [ngClass]="{'line_selected':(location.id==idLocation)}">
                 <td>{{location.typeMateriel.description}}</td>
+                <td>{{getReference(location)}}</td>
                 <td>{{location.date_debut}}</td>
                 <td>{{location.date_retour}}</td>
-                <td>
-                    <input type="checkbox" [(ngModel)]="location.valide" onclick="return false;">
-                </td>
+                <td>{{getEtatLocation(location)}}</td>
             </tr>
         </tbody>
     </table>

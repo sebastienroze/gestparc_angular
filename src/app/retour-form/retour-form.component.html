@@ -1,0 +1,32 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="retourid>=0">Modifier un retour</h2>
+        <h2 *ngIf="retourid==-1">Enregistrer un nouveau retour</h2>
+        <form [formGroup]="retourForm" (ngSubmit)="onSaveRetour()">
+
+            <label for="location">Référence: </label>
+            <select name="location" formControlName="location" (change)="onSelectReference()">
+                <option *ngFor="let locationEnPret of locationsEnPret" value="{{locationEnPret.id}}">
+                    {{locationEnPret.materiel.reference}}
+                </option>
+            </select>
+            <br>
+            <label>
+            Etat avant le prêt :
+            </label><span>
+            {{etatMateriel}}</span>
+            <br>
+            <label for="audit">Audit : </label>
+            <input type="audit" id="audit" formControlName="audit">
+            <br>
+            <label for="etatSortant">Etat du produit : </label>
+            <input type="text" id="etatSortant" formControlName="etatSortant">
+            <br>
+            <button [disabled]="retourForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

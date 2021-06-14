@@ -43,8 +43,8 @@ export class CadresService {
         return this.http.post<Cadre>(url, JSON.stringify(aCadre), this.appParams.httpOptions).toPromise<Cadre>();
     }
 
-    public removeCadre(user: Cadre): Promise<any> {
-        const url = `${this.getDeleteCadreUrl()}/${user.id}`;
+    public removeCadre(cadre: Cadre): Promise<any> {
+        const url = `${this.getDeleteCadreUrl()}/${cadre.id}`;
         return this.http.delete<Cadre[]>(url, this.appParams.httpOptions).toPromise<any>();
 
     }

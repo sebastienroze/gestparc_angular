@@ -1,0 +1,28 @@
+<div class="fiche">
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Etat</td>
+                <td>Matériel</td>
+                <td>Date d'envoi</td>
+                <td>Date retour</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reparation of reparations | filterReparationList:searchText" (click)="onViewReparation(reparation.id)"
+                [ngClass]="{'line_selected':(reparation.id==idReparation)}">
+                <td>{{getEtat(reparation)}}</td>
+                <td>{{getReference(reparation)}}</td>
+                <td>{{reparation.date_envoi}}</td>
+                <td>{{reparation.date_retour}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-reparation class="detail"></app-single-reparation>
+</div>

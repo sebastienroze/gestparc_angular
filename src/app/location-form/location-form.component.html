@@ -3,9 +3,18 @@
         <button (click)="onBack()">
             Retour
         </button>
-        <h2 *ngIf="locationid>=0">Modifier un emprun</h2>
-        <h2 *ngIf="locationid==-1">Enregistrer un nouveau location</h2>
-        <form [formGroup]="locationForm" (ngSubmit)="onSaveLocation()">
+        <h2 *ngIf="locationid>=0">Modifier un emprunt</h2>
+        <h2 *ngIf="locationid==-1">Enregistrer une nouvel emprunt</h2>
+
+        <form *ngIf="canModify()" [formGroup]="locationForm" (ngSubmit)="onSaveLocation()">
+            <label for="cadre">Cadre d'utilisation: </label>
+            <select name="cadre" formControlName="cadre">
+                <option *ngFor="let cadre of cadres" value="{{cadre.id}}">
+                    {{cadre.description}}
+                </option>
+            </select>
+            <br>
+            
             <label for="typeMateriel">Type de matériel: </label>
             <select name="typeMateriel" formControlName="typeMateriel">
                 <option *ngFor="let typeMateriel of typeMateriels" value="{{typeMateriel.id}}">
@@ -13,7 +22,6 @@
                 </option>
             </select>
             <br>
-
             <label for="date_debut">Date de début : </label>
             <input type="date" id="date_debut" formControlName="date_debut">
             <br>
@@ -22,21 +30,34 @@
             <br>
             <button [disabled]="locationForm.invalid" type="submit">Enregistrer</button>
         </form>
-        <form [formGroup]="locationAdminForm" (ngSubmit)="onAdminSaveLocation()">
-            <label for="Materiel">Matériel : </label>
+        <div *ngIf="!canModify()">
+            <label>Date de début : </label>{{location.date_debut}}
+            <br>
+            <label>Date de retour : </label>{{location.date_retour}}
+            <br>
+            <label>Type de matériel:</label>{{location.typeMateriel.description}}
+            <br>
+            <label>Matériel:</label>{{getMaterielNom()}}
+            <br>
+            <label>Référence:</label>{{getMaterielReference()}}
+            <br>
+            <label>Etat:</label>{{getMaterielEtat()}}
+        </div>
+        <form *ngIf="isPourValider()" [formGroup]="locationValiderForm" (ngSubmit)="onValiderSaveLocation()">
+            <label for="materiel">Matériel : </label>
             <select name="materiel" formControlName="materiel">
                 <option *ngFor="let materiel of materiels" value="{{materiel.id}}">
                     {{materiel.reference}}
                 </option>
             </select>
             <br>
-            <label for="valide">Valide : </label>
-            <input type="checkbox" id="valide" formControlName="valide">
-            <br>
-
-            <button [disabled]="locationForm.invalid" type="submit">Enregistrer</button>
+            <button [disabled]="locationValiderForm.invalid" type="submit">Valider</button>
         </form>
+        <h3>Etat: {{getEtatLocation()}}</h3>
 
+        <form *ngIf="isPourPret()" (ngSubmit)="onPreterSaveLocation()">
+            <button type="submit">Pret du matériel</button>
+        </form>
         <p>{{errorMessage}}</p>
     </div>
 </div>

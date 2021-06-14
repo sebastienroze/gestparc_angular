@@ -16,7 +16,6 @@
             <label for="etat">Etat : </label>
             <input type="text" id="etat" formControlName="etat">
             <br>
-
             <label for="typeMateriel">Type : </label>
             <select name="typeMateriel" formControlName="typeMateriel">
                 <option *ngFor="let typeMateriel of typeMateriels" value="{{typeMateriel.id}}">

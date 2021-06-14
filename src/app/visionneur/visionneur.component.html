@@ -1,0 +1,7 @@
+<a href="{{appParams.visionneurFile}}" target="_blank" download>Télécharger</a>
+<button (click)="onBack()">
+    Retour
+</button>
+
+<object type="application/pdf" [data]="getFile() | safe">
+</object>

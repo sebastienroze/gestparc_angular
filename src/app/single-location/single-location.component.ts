@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppParams } from '../app.params';
 import { Location } from '../models/Location.model';
 import { AuthService } from '../services/auth.service';
 import { LocationsService } from '../services/location.service';
@@ -20,6 +21,7 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     private locationService: LocationsService,
     private router: Router,
     private authService: AuthService,
+    public appParams : AppParams,
   ) { }
   /***********/
 
@@ -44,8 +46,45 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
+  getUtilisateurLogin(): string {
+    if (this.location == null) return null
+    if (this.location.utilisateur == null) return null
+    return this.location.utilisateur.login
+  }
+
+  isOwner(): boolean {    
+    if (this.getUtilisateurLogin() == null) {
+      return true;
+    }
+    if (this.getUtilisateurLogin() == this.authService.login) {
+      return true;
+    }
+    return false;
+  }
+
+  public canModify(): boolean {
+    if (this.location == null) return false;    
+    return (this.location.etat == 0) || (this.appParams.isAdmin() && (this.location.etat <= 1)) ;
+  }
+
+  public canDelete(): boolean {
+    if (this.location == null) return false;
+    if (!this.isOwner()) return false;
+    return (this.location.etat == 0);
+  }
+
+  public canBordereau(): boolean {
+    if (this.location == null) return false;
+    return (this.location.etat > 1);
+  }  
+
+  public getEtatLocation(): string {
+    if (this.location != null) return this.locationService.getEtatLocation()[this.location.etat];
+    return null;
+  }
+
   getReference() {
-    if ((this.location != null && this.location.materiel != null)) return this.location.materiel.reference;    
+    if ((this.location != null && this.location.materiel != null)) return this.location.materiel.reference;
     return null;
   }
   onBack() {
@@ -73,4 +112,16 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/locations', 'edit', this.location.id]);
   }
 
+  getCadreDescription() {
+    if (this.location==null) return null
+    if (this.location.cadre==null) return null
+    return this.location.cadre.description
+  }
+
+  onBordereau() {    
+    this.appParams.visionneurFile = this.appParams.apiUrl 
+    +  "docs/location/borderau/"+ this.location.id;
+    this.appParams.visionneurBack = ['/locations','view',this.location.id+""]
+    this.router.navigate(['/visionneur']);
+  }
 }

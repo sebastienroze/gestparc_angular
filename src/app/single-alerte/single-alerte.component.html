@@ -1,0 +1,24 @@
+<div class="">
+    <div *ngIf="alerte!=null">
+        <h1>Alerte</h1>
+        {{alerte.texte}}        
+        <div *ngIf="alerte.location!=null">
+            <h1>Location : {{alerte.location.typeMateriel.description}}</h1>
+            <span>Cadre:</span>{{alerte.location.cadre.description}}<br>
+            <span>Emprunteur:</span>{{alerte.location.utilisateur.login}}<br>
+            <span>Date début:</span>{{alerte.location.date_debut}}<br>
+            <span>Date retour:</span>{{alerte.location.date_retour}}<br>
+            <span>Matériel:</span>{{getMateriel()}}<br>
+            <span>Etat:</span> {{getEtatLocation()}}<br>            
+        </div>
+        <div *ngIf="alerte.reparation!=null">
+            <h1>Reparation : </h1>
+            <span>Matériel :</span>{{alerte.reparation.materiel.reference}}<br>
+            <span>Date d'envoi :</span>{{alerte.reparation.date_envoi}}<br>
+            <span>Date de retour :</span>{{alerte.reparation.date_retour}}<br>        
+            <span>Etat entrant :</span>{{alerte.reparation.etatEntrant}}<br>
+            <span>Etat cassé :</span>{{alerte.reparation.etatCasse}}<br>
+        </div>        
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

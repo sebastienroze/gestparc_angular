@@ -1,0 +1,50 @@
+<div class="fiche">
+    <div>
+        <h1>Matériel : {{materiel.nom}}</h1>
+        <span>Référence :</span>{{materiel.reference}}
+        <span></span>
+        <span>Type :</span>{{materiel.typeMateriel.description}}<br>
+    </div>
+    <button (click)="onBack()">
+        Retour
+    </button>
+
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Date</td>
+                <td>Etat</td>
+                <td>Emprunt</td>
+                <td>Retour</td>
+                <td>Réparation</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let historique of historiques | filterHistoriqueList:searchText"
+                (click)="onViewHistorique(historique.id)" [ngClass]="{'line_selected':(historique.id==idHistorique)}">
+                <td>{{historique.date}}</td>
+                <td>{{historique.etat}}</td>
+                <td><a *ngIf="historique.location!=null" routerLink="/locations/view/{{historique.location.id}}">
+                        {{historique.location.utilisateur.login}}
+                    </a>
+                </td>
+                <td><a *ngIf="historique.retour!=null" routerLink="/retours/view/{{historique.retour.id}}">
+                        {{historique.retour.location.utilisateur.login}}
+                    </a>
+                </td>
+                <td><a *ngIf="historique.reparation!=null" routerLink="/reparations/view/{{historique.reparation.id}}">
+                        {{historique.reparation.date_retour}}
+                    </a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <p>{{errorMessage}}</p>
+</div>

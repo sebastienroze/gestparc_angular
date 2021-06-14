@@ -5,6 +5,27 @@
         <span>Etat :</span>{{materiel.etat}}<br>
         <span>Type :</span>{{materiel.typeMateriel.description}}<br>
     </div>
+    <div *ngIf="location!=null">
+        <h2>Emprunté</h2>
+        <span>Date début:</span>{{location.date_debut}}<br>
+        <span>Date retour:</span>{{location.date_retour}}<br>
+        <span>Emprunteur:</span>{{location.utilisateur.login}}<br>
+        <span>Nom :</span>{{location.utilisateur.nom}}<br>
+        <span>Prénom :</span>{{location.utilisateur.prenom}}<br>
+        <span>CP :</span>{{location.utilisateur.cp}}<br>
+        <span>Ville :</span>{{location.utilisateur.ville}}<br>
+        <span>Téléphone :</span>{{location.utilisateur.telephone}}<br>
+        <span>E-mail :</span>{{location.utilisateur.email}}<br>
+    </div>    
+    <div *ngIf="reparation!=null">
+        <h2>En réparation</h2>
+        <span>Date d'envoi:</span>{{reparation.date_envoi}}<br>
+        <span>Date retour:</span>{{reparation.date_retour}}<br>
+    </div>
+
+    <div *ngIf="reparation==null&&reparation==null">
+        <h2>En stock</h2>
+    </div>
     <div class="boutons">
         <button (click)="onNewMateriel()">Nouveau
         </button>
@@ -14,6 +35,10 @@
         <button *ngIf="materiel!=null" (click)="onDeleteMateriel()">
             Supprimer
         </button>
+        <button *ngIf="materiel!=null" (click)="onHistoriqueMateriel()">
+            historique
+        </button>
+
     </div>
     <p>{{errorMessage}}</p>
 </div>
