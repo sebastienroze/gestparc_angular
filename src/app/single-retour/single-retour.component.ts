@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Retour } from '../models/Retour.model';
 import { AuthService } from '../services/auth.service';
+import { DocumentsService } from '../services/document.service';
 import { RetoursService } from '../services/retours.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class SingleRetourComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private retourService: RetoursService,
+    private documentService: DocumentsService,
     private router: Router,
     private authService: AuthService,
   ) { }
@@ -110,5 +112,9 @@ export class SingleRetourComponent implements OnInit, OnDestroy {
   onModify() {
     this.router.navigate(['/retours', 'edit', this.retour.id]);
   }
+
+  onDocumentRetour() {
+    this.documentService.VoirDocuments(null,null,this.retour);
+  }  
 
 }

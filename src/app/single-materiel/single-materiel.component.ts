@@ -6,6 +6,7 @@ import { Materiel } from '../models/Materiel.model';
 import { MaterielDetail } from '../models/MaterielDetail.model';
 import { Reparation } from '../models/Reparation.model';
 import { AuthService } from '../services/auth.service';
+import { DocumentsService } from '../services/document.service';
 import { MaterielsService } from '../services/materiel.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class SingleMaterielComponent implements OnInit, OnDestroy {
     private materielService: MaterielsService,
     private router: Router,
     private authService: AuthService,
+    private documentService: DocumentsService,
     private appParams: AppParams,
   ) { }
   /***********/
@@ -41,6 +43,7 @@ export class SingleMaterielComponent implements OnInit, OnDestroy {
                 this.materiel = materielDetail.materiel;
                 this.location = materielDetail.location;
                 this.reparation = materielDetail.reparation;
+                console.log(this.materiel)
               }
             }, (error) => { this.errorMessage = this.authService.getErrorMessage(error); }
           );
@@ -75,8 +78,11 @@ export class SingleMaterielComponent implements OnInit, OnDestroy {
   onHistoriqueMateriel() {
     this.router.navigate(['/materiels','historiques',  this.materiel.id]);
   }
+    
+  onDocumentMateriel() {
+    this.documentService.VoirDocuments(this.materiel,null,null)
+  }  
   
-
   onModify() {
     this.router.navigate(['/materiels', 'edit', this.materiel.id]);
   }

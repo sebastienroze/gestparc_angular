@@ -3,17 +3,21 @@
         <h1>Reparation : {{reparation.etat}}</h1>
         <span>Matériel :</span>{{getReference()}}<br>
         <span>Date d'envoi :</span>{{reparation.date_envoi}}<br>
-        <span>Date de retour :</span>{{reparation.date_retour}}<br>        
+        <span>Date de retour :</span>{{reparation.date_retour}}<br>
         <span>Etat entrant :</span>{{reparation.etatEntrant}}<br>
         <span>Etat cassé :</span>{{reparation.etatCasse}}<br>
         <span>Etat réparé :</span>{{reparation.etatRepare}}<br>
-
     </div>
+    
     <div class="boutons">
-        <button (click)="onNewReparation()">Nouveau
-        </button>
+
         <button *ngIf="reparation!=null&&reparation.etat==0" (click)="onModify()">
             Modifier
+        </button>
+        <button (click)="onNewReparation()">Nouveau
+        </button>
+        <button *ngIf="reparation!=null" (click)="onDocumentReparation()">
+            Documents
         </button>
     </div>
     <p>{{errorMessage}}</p>

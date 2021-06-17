@@ -16,6 +16,7 @@ export class LocationListComponent implements OnInit, OnDestroy {
   public idLocation = null;
   private routeSubscription: Subscription;
   public searchText: any;
+  public searchEncours: any;
   /***********/
   constructor(
     private locationsService: LocationsService,
@@ -27,8 +28,21 @@ export class LocationListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
- 
-    this.locationsService.getLocations().then(
+    this.searchEncours = false;
+    this.recherche();
+    this.searchEncours = true;
+  }
+
+    
+  
+  recherche() {
+    var promiseLocation: Promise<Location[]>;
+    if (!this.searchEncours) {
+      promiseLocation = this.locationsService.getLocationsEncours();
+    } else {
+      promiseLocation= this.locationsService.getLocations();
+    }
+    promiseLocation.then(
       (locations: Location[]) => {
         if (locations === null) {
           console.log("Erreur à la lecture des locations");

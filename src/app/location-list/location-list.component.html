@@ -1,5 +1,7 @@
 <div class="fiche">
     <div class="recherche">
+        <label for="encours">En cours : </label>
+        <input id = "encours" type = "checkbox" [(ngModel)]="searchEncours" (click)="recherche()">
         Recherche
         <input [(ngModel)]="searchText">
     </div>

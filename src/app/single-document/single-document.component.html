@@ -1,0 +1,21 @@
+<div class="">
+    <div *ngIf="document!=null">
+        <h1>Document : {{document.nom}}</h1>
+        <span>Format:</span>{{getExtension()}}<br>        
+    </div>
+    
+    <div class="boutons"> 
+        <button (click)="onNewDocument()">Nouveau
+        </button>
+        <button *ngIf="document!=null" (click)="onModify()">
+            Modifier
+        </button>
+        <button *ngIf="document!=null" (click)="onDeleteDocument()">
+            Supprimer
+        </button>
+        <button *ngIf="canVoir()" (click)="onVoir()">
+            Voir
+        </button>
+    </div>
+    <p>{{errorMessage}}</p>
+</div>

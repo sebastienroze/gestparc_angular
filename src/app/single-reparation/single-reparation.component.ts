@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Reparation } from '../models/Reparation.model';
 import { AuthService } from '../services/auth.service';
+import { DocumentsService } from '../services/document.service';
 import { ReparationsService } from '../services/reparation.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { ReparationsService } from '../services/reparation.service';
   templateUrl: './single-reparation.component.html',
   styleUrls: ['./single-reparation.component.css']
 })
+
 export class SingleReparationComponent implements OnInit, OnDestroy {
   public reparation: Reparation = null;
   public errorMessage: string;
@@ -18,6 +20,7 @@ export class SingleReparationComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private reparationService: ReparationsService,
+    private documentService: DocumentsService,
     private router: Router,
     private authService: AuthService,
   ) { }
@@ -74,4 +77,8 @@ export class SingleReparationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/reparations', 'edit', this.reparation.id]);
   }
 
+  onDocumentReparation() {
+    this.documentService.VoirDocuments(null,this.reparation,null);
+
+  }  
 }

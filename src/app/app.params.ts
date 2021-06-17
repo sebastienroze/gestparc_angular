@@ -3,20 +3,30 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 
 export class AppParams {
-  /*
-    mode_debug: boolean = true;
+  //  mode_debug: boolean = true;
     apiUrl: string = 'http://localhost:8080/';
-  */
-    apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
+
+
+  //apiUrl: string = 'http://146.59.199.18:8080/gestparc/';
   mode_debug: boolean = false;
+
   applicationVersion = 0.2;
 
-  public visionneurFile : string;
-  public visionneurBack : string[];
+  public visionneurFile: string;
+  public visionneurBack: string[];
   private roles: string[] = [];
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
+    })
+  };
+
+  httpOptionMultipart = {
+    headers: new HttpHeaders({
+      //      'Content-Type': 'multipart/form-data',
+
+      //      'Content-Type': 'multipart/form-data'
     })
   };
 
@@ -28,6 +38,19 @@ export class AppParams {
       })
     };
     this.roles = eval(authServiceResponse.roles);
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        , 'Authorization': `Bearer ${authServiceResponse.bearer}`
+      })
+    };
+    this.httpOptionMultipart = {
+      headers: new HttpHeaders({
+        //      'Content-Type': 'file',
+        //      'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${authServiceResponse.bearer}`
+      })
+    };
   }
   public doLogout() {
     this.httpOptions = {
@@ -35,7 +58,10 @@ export class AppParams {
         'Content-Type': 'application/json'
       })
     };
-    this.roles = [];
+    this.httpOptionMultipart = {
+      headers: new HttpHeaders({
+      })
+    };
   }
 
   public isAdmin() {

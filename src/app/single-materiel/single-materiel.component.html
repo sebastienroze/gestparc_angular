@@ -3,7 +3,9 @@
         <h1>Matériel : {{materiel.nom}}</h1>
         <span>Référence :</span>{{materiel.reference}}<br>
         <span>Etat :</span>{{materiel.etat}}<br>
-        <span>Type :</span>{{materiel.typeMateriel.description}}<br>
+        <div *ngIf="materiel.typeMateriel!=null">
+            <span>Type :</span>{{materiel.typeMateriel.description}}<br>
+        </div>
     </div>
     <div *ngIf="location!=null">
         <h2>Emprunté</h2>
@@ -16,16 +18,15 @@
         <span>Ville :</span>{{location.utilisateur.ville}}<br>
         <span>Téléphone :</span>{{location.utilisateur.telephone}}<br>
         <span>E-mail :</span>{{location.utilisateur.email}}<br>
-    </div>    
+    </div>
     <div *ngIf="reparation!=null">
         <h2>En réparation</h2>
         <span>Date d'envoi:</span>{{reparation.date_envoi}}<br>
         <span>Date retour:</span>{{reparation.date_retour}}<br>
     </div>
-
-    <div *ngIf="reparation==null&&reparation==null">
+    <div *ngIf="reparation==null&&location==null">
         <h2>En stock</h2>
-    </div>
+    </div>    
     <div class="boutons">
         <button (click)="onNewMateriel()">Nouveau
         </button>
@@ -38,7 +39,9 @@
         <button *ngIf="materiel!=null" (click)="onHistoriqueMateriel()">
             historique
         </button>
-
+        <button *ngIf="materiel!=null" (click)="onDocumentMateriel()">
+            Documents
+        </button>
     </div>
     <p>{{errorMessage}}</p>
 </div>

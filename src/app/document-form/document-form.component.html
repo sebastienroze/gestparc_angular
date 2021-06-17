@@ -1,0 +1,17 @@
+<div class="page">
+    <div>
+        <button (click)="onBack()">
+            Retour
+        </button>
+        <h2 *ngIf="documentid>=0">Modifier un document</h2>
+        <h2 *ngIf="documentid==-1">Enregistrer un nouveau document</h2>
+        <form [formGroup]="documentForm" (ngSubmit)="onSaveDocument()">
+            <label for="nom">Nom du document : </label>
+            <input type="text" id="nom" formControlName="nom">
+            <br>
+            <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.png,.jpg">            
+            <button [disabled]="documentForm.invalid" type="submit">Enregistrer</button>
+        </form>
+        <p>{{errorMessage}}</p>
+    </div>
+</div>

@@ -73,11 +73,6 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     return (this.location.etat == 0);
   }
 
-  public canBordereau(): boolean {
-    if (this.location == null) return false;
-    return (this.location.etat > 1);
-  }  
-
   public getEtatLocation(): string {
     if (this.location != null) return this.locationService.getEtatLocation()[this.location.etat];
     return null;
@@ -117,6 +112,11 @@ export class SingleLocationComponent implements OnInit, OnDestroy {
     if (this.location.cadre==null) return null
     return this.location.cadre.description
   }
+
+  public canBordereau(): boolean {
+    if (this.location == null) return false;
+    return (this.location.etat > 1);
+  }  
 
   onBordereau() {    
     this.appParams.visionneurFile = this.appParams.apiUrl 

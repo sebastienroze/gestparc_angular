@@ -1,0 +1,53 @@
+<div class="fiche">
+    <div *ngIf="documentsService.materiel!=null">
+        <h1>Matériel : {{documentsService.materiel.nom}}</h1>
+        <span>Référence :</span>{{documentsService.materiel.reference}}
+        <span></span>
+        <div *ngIf="documentsService.materiel.typeMateriel!=null">
+            <span>Type :</span>{{documentsService.materiel.typeMateriel.description}}<br>
+        </div>
+    </div>
+    <div *ngIf="documentsService.reparation!=null">
+        <h1>Réparation</h1>
+        <span>Date d'envoi :</span>{{documentsService.reparation.date_envoi}}<br>
+        <span>Date de retour :</span>{{documentsService.reparation.date_retour}}<br>
+        <span>Etat cassé :</span>{{documentsService.reparation.etatCasse}}<br>
+        <div *ngIf="documentsService.reparation.materiel!=null">
+            <span>Matériel :</span>{{documentsService.reparation.materiel.nom}}<br>
+            <span></span>
+            <div *ngIf="documentsService.reparation.materiel.typeMateriel!=null">
+                <span>Type :</span>{{documentsService.reparation.materiel.typeMateriel.description}}<br>
+            </div>
+            <span>Référence :</span>{{documentsService.reparation.materiel.reference}}<br>
+        </div>
+    </div>
+    <div *ngIf="documentsService.retour!=null">
+        <h1>Retour : {{documentsService.retour.audit}}</h1>
+    </div>
+
+    <button (click)="onBack()">
+        Retour
+    </button>
+
+    <div class="recherche">
+        Recherche
+        <input [(ngModel)]="searchText">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Format</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let document of documents | filterDocumentList:searchText" (click)="onViewDocument(document.id)"
+                [ngClass]="{'line_selected':(document.id==idDocument)}">
+                <td>{{document.nom}}</td>
+                <td>{{document.extension}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{errorMessage}}</p>
+    <app-single-document class="detail"></app-single-document>
+</div>

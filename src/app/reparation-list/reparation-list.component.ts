@@ -17,6 +17,7 @@ export class ReparationListComponent implements OnInit, OnDestroy {
   public idReparation = null;
   private routeSubscription: Subscription;
   public searchText: any;
+  public searchEncours: any;
   /***********/
   constructor(
     private reparationsService: ReparationsService,
@@ -26,8 +27,26 @@ export class ReparationListComponent implements OnInit, OnDestroy {
   ) { }
   /***********/
 
+
   ngOnInit(): void {
-    this.reparationsService.getReparations().then(
+    this.searchEncours = false;
+    this.recherche();
+    this.searchEncours = true;
+  }
+
+  recherche() {
+    var promiseReparation: Promise<Reparation[]>;
+    console.log(this.searchEncours)
+
+    if (!this.searchEncours) {
+      console.log("encours")
+      promiseReparation = this.reparationsService.getReparationsEncours();
+    } else {
+      console.log("tous")
+
+      promiseReparation = this.reparationsService.getReparations();
+    }
+    promiseReparation.then(
       (reparations: Reparation[]) => {
         if (reparations === null) {
           console.log("Erreur à la lecture des reparations");
@@ -39,19 +58,18 @@ export class ReparationListComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.route.params.subscribe(routeParams => {
       this.idReparation = routeParams.id;
     });
-
   }
 
   getReference(reparation: Reparation) {
-    if (reparation==null) return null;
-    if (reparation.materiel==null) return null;
+    if (reparation == null) return null;
+    if (reparation.materiel == null) return null;
     return reparation.materiel.reference;
   }
-  
+
   getEtat(reparation: Reparation) {
-    if (reparation==null) return null;
-    if (reparation.materiel==null) return null;
-    if (reparation.etat  == 0) return "En attente";
+    if (reparation == null) return null;
+    if (reparation.materiel == null) return null;
+    if (reparation.etat == 0) return "En attente";
     return "Réparée";
   }
 

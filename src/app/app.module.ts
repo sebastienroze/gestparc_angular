@@ -48,6 +48,11 @@ import { FilterReparationListPipe } from './reparation-list.filter';
 import { AlerteListComponent } from './alerte-list/alerte-list.component';
 import { SingleAlerteComponent } from './single-alerte/single-alerte.component';
 import { FilterAlerteListPipe } from './alerte-list.filter';
+import { AuthInterceptor } from './services/auth-interceptor';
+import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentFormComponent } from './document-form/document-form.component';
+import { SingleDocumentComponent } from './single-document/single-document.component';
+import { FilterDocumentListPipe } from './document-list.filter';
 
 const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent },
@@ -74,6 +79,11 @@ const appRoutes: Routes = [
   { path: 'materiels/view/:id', canActivate: [AuthGuardService], component: MaterielListComponent },
   { path: 'materiels/edit/:id', canActivate: [AuthGuardService], component: MaterielFormComponent },
   { path: 'materiels/historiques/:id', canActivate: [AuthGuardService], component: HistoriqueListComponent },
+  { path: 'materiels/documents', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'materiels/documentsNew', canActivate: [AuthGuardService], component: DocumentFormComponent },
+  { path: 'materiels/documentsView/:id', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'materiels/documentsEdit/:id', canActivate: [AuthGuardService], component: DocumentFormComponent },
+
   // *********Locations*********
   { path: 'locations', canActivate: [AuthGuardService], component: LocationListComponent },
   { path: 'locations/new', canActivate: [AuthGuardService], component: LocationFormComponent },
@@ -84,11 +94,21 @@ const appRoutes: Routes = [
   { path: 'retours/new', canActivate: [AuthGuardService], component: RetourFormComponent },
   { path: 'retours/view/:id', canActivate: [AuthGuardService], component: RetourListComponent },
   { path: 'retours/edit/:id', canActivate: [AuthGuardService], component: RetourFormComponent },
+  { path: 'retours/documents', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'retours/documentsNew', canActivate: [AuthGuardService], component: DocumentFormComponent },
+  { path: 'retours/documentsView/:id', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'retours/documentsEdit/:id', canActivate: [AuthGuardService], component: DocumentFormComponent },
+
   // *********Reparation*********
   { path: 'reparations', canActivate: [AuthGuardService], component: ReparationListComponent },
   { path: 'reparations/new', canActivate: [AuthGuardService], component: ReparationFormComponent },
   { path: 'reparations/view/:id', canActivate: [AuthGuardService], component: ReparationListComponent },
   { path: 'reparations/edit/:id', canActivate: [AuthGuardService], component: ReparationFormComponent },
+  
+  { path: 'reparations/documents', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'reparations/documentsNew', canActivate: [AuthGuardService], component: DocumentFormComponent },
+  { path: 'reparations/documentsView/:id', canActivate: [AuthGuardService], component: DocumentListComponent },
+  { path: 'reparations/documentsEdit/:id', canActivate: [AuthGuardService], component: DocumentFormComponent },
   // *********Alertes*********
   { path: 'alertes', canActivate: [AuthGuardService], component: AlerteListComponent},
   { path: 'alertes/view/:id', canActivate: [AuthGuardService], component: AlerteListComponent },  
@@ -151,6 +171,11 @@ const appRoutes: Routes = [
     AlerteListComponent,
     SingleAlerteComponent,
     FilterAlerteListPipe,
+
+    DocumentListComponent,
+    DocumentFormComponent,
+    SingleDocumentComponent,
+    FilterDocumentListPipe,
   ],
   imports: [
     BrowserModule,
@@ -160,7 +185,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    AuthGuardService
+    AuthGuardService,
+    AuthInterceptor,
+
   ],
   bootstrap: [AppComponent]
 })

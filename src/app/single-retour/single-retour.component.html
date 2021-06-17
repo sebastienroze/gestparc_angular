@@ -16,6 +16,10 @@
     <div class="boutons">
         <button (click)="onNewRetour()">Nouveau
         </button>        
+        <button *ngIf="retour!=null" (click)="onDocumentRetour()">
+            Documents
+        </button>
+
     </div>
     <p>{{errorMessage}}</p>
 </div>

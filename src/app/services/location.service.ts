@@ -7,6 +7,7 @@ import { Location } from '../models/Location.model';
 
 export class LocationsService {
     private apiLocationsUrl = 'user/locations';  // URL to web api
+    private apiLocationsEncoursUrl = 'user/locations/encours';  // URL to web api
     private apiLocationsEnPretUrl = 'admin/locationsEnPret';  // URL to web api
     private apiLocationUrl = 'user/location';  // URL to web api
     private apiNewLocationUrl = 'user/location/new';  // URL to web api
@@ -23,6 +24,7 @@ export class LocationsService {
 
     private getLocationUrl(): string { return this.appParams.apiUrl + this.apiLocationUrl; }
     private getLocationsUrl(): string { return this.appParams.apiUrl + this.apiLocationsUrl; }
+    private getLocationsEncoursUrl(): string { return this.appParams.apiUrl + this.apiLocationsEncoursUrl; }
     private getLocationsEnPretUrl(): string { return this.appParams.apiUrl + this.apiLocationsEnPretUrl; }
     private getNewLocationUrl(): string { return this.appParams.apiUrl + this.apiNewLocationUrl; }
     private getUpdateLocationUrl(): string { return this.appParams.apiUrl + this.apiUpdateLocationUrl; }
@@ -37,6 +39,11 @@ export class LocationsService {
 
     public getLocations(): Promise<Location[]> {
         const url = `${this.getLocationsUrl()}`;
+        return this.http.get<Location[]>(url, this.appParams.httpOptions).toPromise<Location[]>();
+    }
+
+    public getLocationsEncours(): Promise<Location[]> {
+        const url = `${this.getLocationsEncoursUrl()}`;
         return this.http.get<Location[]>(url, this.appParams.httpOptions).toPromise<Location[]>();
     }
 
